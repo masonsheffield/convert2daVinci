@@ -46,6 +46,11 @@ def main(myFile, curaMode=False):
 			
 	#creat new filename with .3w extension  
 	newFile =  myFile[:-5] + '3w'
+	newDebugFile = myFile[:-6] + '_debug.gcode'
+	df = open(newDebugFile,'w+')
+	df.writelines(trimmedGcode)
+	df.close()
+	
 	outf = open(newFile,'w+')
 	#encode the modified gcode file with base64 encoding
 	newGcodeStr = ''.join(trimmedGcode)
@@ -57,5 +62,5 @@ def main(myFile, curaMode=False):
 
 
 if __name__ == "__main__":
-	main(sys.argv[1])
+	main(sys.argv[1],sys.argv[2])
 	
